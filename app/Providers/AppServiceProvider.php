@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\account_type;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -20,5 +22,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+        $accountType = account_type::latest()->get();
+
+        // Share the $accountType variable with all views
+        View::share('accountType', $accountType);
     }
 }

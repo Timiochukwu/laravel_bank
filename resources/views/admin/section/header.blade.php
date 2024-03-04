@@ -93,7 +93,7 @@
                             <div class="dropdown-content-body">
                                 <ul>
                                     <li>
-                                        <a href="{{'/dashbord/profile'}}"><i class="icon-user"></i>
+                                        <a href="{{route('admin.profile')}}"><i class="icon-user"></i>
                                             <span>Profile</span></a>
                                     </li>
                                     <hr class="my-2">
@@ -138,6 +138,25 @@
                         <ul aria-expanded="false">
                             <li><a href="{{route('admin.add.customer')}}">Add Customer</a></li>
                             <li><a href="{{route('admin.view.customer')}}"> Manage Customer</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-th-list"></i></i> <span class="nav-text">Loan Type</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{route('add.loan.type')}}">Add Loan Type</a></li>
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-th-list"></i></i> <span class="nav-text">Account Type</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{route('admin.add.type')}}">Add Account Type</a></li>
+                            <li><a href="{{route('admin.manage.type')}}"> Manage Account Type</a></li>
 
                         </ul>
                     </li>

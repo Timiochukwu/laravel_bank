@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaction_type', function (Blueprint $table) {
             $table->id('transaction_id');
+            $table->integer('customer_id');
             $table->string('sender_id');
             $table->string('recipient_id');
             $table->string('transaction_type');

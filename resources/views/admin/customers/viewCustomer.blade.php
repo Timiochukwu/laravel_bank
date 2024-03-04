@@ -46,7 +46,7 @@
                                                 <td> Account Type </td>
                                                 <td> Account Balance </td>
                                                 <td> Account Status </td>
-                                                <td colspan="3"> Operations </td>
+                                                <td colspan="2"> Operations </td>
                                             </tr>
 
                                             @foreach($customers as $customerKey => $customerValues)
@@ -57,7 +57,7 @@
                                                 <td> {{$customerValues['phone_number']}} </td>
                                                 <td> {{$customerValues['email']}} </td>
                                                 <td> {{$customerValues['account_number']}} </td>
-                                                <td> NULL </td>
+                                                <td>{{optional($customerValues->accountTypeeee)->account_name }}</td>
                                                 <td> {{$customerValues['account_balance']}} </td>
                                                 <td> @if($customerValues['status']=='Inactive' || $customerValues['status']=='inactive' )
                                                     <font color="red"> {{strtoupper($customerValues['status'])}} </font>

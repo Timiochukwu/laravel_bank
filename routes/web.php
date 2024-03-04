@@ -9,6 +9,8 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AccountTypeController;
+use App\Http\Controllers\Admin\LoanTypeController;
 
 
 use App\Http\Controllers\Customer\CustomerController;
@@ -35,10 +37,38 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin'], function() {
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
+
+
+        Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+        
+        Route::get('/edit/profile', [AdminController::class, 'editProfile'])->name('admin.edit.profile');
+        Route::post('/edit/profile', [AdminController::class, 'editProfileBackend']);
+
+        Route::get('/change/password', [AdminController::class, 'changePassword'])->name('admin.change.password');
+        Route::post('/change/password', [AdminController::class, 'changePasswordBackend']);
+
         Route::get('/view/customers', [UserController::class, 'viewCustomer'])->name('admin.view.customer');
+
         Route::get('/edit/customer/{id}', [UserController::class, 'editCustomer'])->name('admin.edit.customer');
+        Route::post('/edit/customer/{id}', [UserController::class, 'editCustomerBackend']);
 
         Route::get('/add/customer', [UserController::class, 'addCustomer'])->name('admin.add.customer');
+        
+        Route::get('/add/account/type', [AccountTypeController::class, 'addAccountType'])->name('admin.add.type');
+        Route::post('/add/account/type', [AccountTypeController::class, 'addAccountTypeBackend']);
+        
+        Route::get('/manage/account/type', [AccountTypeController::class, 'manageAccountType'])->name('admin.manage.type');
+       
+        Route::get('/edit/loan/type/{$id}', [AccountTypeController::class, 'editloanType'])->name('admin.edit.loan.type');
+        Route::post('/edit/loan/type/{$id}', [AccountTypeController::class, 'editLoanTypeBackend']);
+
+        Route::get('/add/loan/type', [LoanTypeController::class, 'addLoanType'])->name('add.loan.type');
+        Route::post('/add/loan/type', [LoanTypeController::class, 'addLoanTypeBackend']);
+
+        Route::get('/edit/loan/{hash_id}', [LoanTypeController::class, 'editLoanType'])->name('edit.loan.type');
+        Route::PUT('/edit/loan/{hash_id}', [LoanTypeController::class, 'editLoanTypeBackend']);
+        
+        Route::get('/delete/loan/{hash_id}', [LoanTypeController::class, 'deleteLoanType'])->name('delete.loan.type');
     });
 
 });
@@ -47,8 +77,22 @@ Route::group(['prefix' => 'customer'], function() {
 
     Route::middleware(['auth:customer'])->group(function() {
         Route::get('/dashboard', [CustomerController::class, 'dashboard'])->name('customer.dashboard');
-        Route::get('/send_money', [CustomerController::class, 'sendMoney'])->name('customer.send');
-        Route::post('/send_money', [CustomerController::class, 'sendMoneyBackend'])->name('customer.send');
+        
+        Route::get('/send_money', [CustomerController::class, 'sendMoney'])->name('customer.send.money');
+        Route::post('/send_money', [CustomerController::class, 'sendMoneyBackend']);
+        
+        Route::get('/transaction', [CustomerController::class, 'customerTransaction'])->name('customer.transaction');
+        Route::get('/transaction/export', [CustomerController::class, 'TransactionExport']);
+
+        Route::get('/profile', [CustomerController::class, 'profile'])->name('customer.profile');
+        
+        Route::get('/edit/profile', [CustomerController::class, 'editProfile'])->name('customer.edit.profile');
+        Route::post('/edit/profile', [CustomerController::class, 'editProfileBackend']);
+
+        Route::get('/change/password', [CustomerController::class, 'changePassword'])->name('customer.change.password');
+        Route::post('/change/password', [CustomerController::class, 'changePasswordBackend']);
+        
+        Route::get('/loan/application', [CustomerController::class, 'loanApplication'])->name('loan.application');
 
 });
 

@@ -12,6 +12,12 @@ class customer extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+     // Define the relationship method
+     public function accountTypeeee()
+     {
+         return $this->belongsTo(account_type::class, 'account_type_name', 'hash_id');
+     }
+
      /**
      * The attributes that are mass assignable.
      *

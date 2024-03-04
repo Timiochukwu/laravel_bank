@@ -1,6 +1,4 @@
-@include('admin.section.header' , ['title' => " View | Customer"] )
-
-
+@include('customers.include.header', ['title' => 'Edit Profile'])
 
 
 <!--**********************************
@@ -29,32 +27,42 @@
                                 <form class="form-valide" method="post">
                                     @csrf
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-firstName"> First Name<span
+                                        <label class="col-lg-4 col-form-label" for="val-skill">First Name <span
                                                 class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" value="{{$customer['first_name']}}" name="first_name" class="form-control">
+                                            <input type="text" name="first_name" value="{{Auth::user()->first_name}}" class="form-control"
+                                                >
 
 
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-lastName"> Last Name<span
+                                        <label class="col-lg-4 col-form-label" for="val-skill">Last Name <span
                                                 class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" value="{{$customer['last_name']}}" name="last_name" class="form-control">
+                                            <input type="text" name="last_name" class="form-control" value="{{Auth::user()->last_name}}">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="val-username">Username <span
                                                 class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="val-username" name="user_name"
-                                                value="{{$customer['username']}}">
-                                            <div class="alert-danger">{{$errors->first("user_name")}}</div>
+                                            <input type="text" class="form-control" id="val-username" name="username"
+                                                value="{{Auth::user()->username}}">
+                                            <div class="alert-danger">{{$errors->first("username")}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="val-email">Phone Number <span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" id="val-email" name="number"
+                                                value="{{Auth::user()->phone_number}}" >
+                                            <div class="alert-danger">{{$errors->first("email")}}</div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -62,36 +70,13 @@
                                                 class="text-danger">*</span>
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="val-email" name="email"
-                                                value="{{$customer['email']}}">
+                                            <input type="text" class="form-control" id="val-email" disabled name="email"
+                                                value="{{Auth::user()->email}}">
                                             <div class="alert-danger">{{$errors->first("email")}}</div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-phoneus">Phone Number
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" id="val-phoneus" name="phone_number"
-                                                value="{{$customer['phone_number']}}">
-                                            <div class="alert-danger">{{$errors->first("phone_number")}}</div>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="val-phoneus">Account Type
-                                            <span class="text-danger">*</span>
-                                        </label>
-                                        <div class="col-lg-1">
-                                        <select name="account_type" style:width="100px">
-                                            <option disabled selected>-- Select Account Type -- </option>
-                                           @foreach($accountType as $key => $value)
-                                            <option value="{{$value->hash_id}}">{{$value->account_name}}</option>
-                                           @endforeach
-                                        </select><hr> 
-                                        </div>
-                                    </div>
 
                                     <div class="form-group row">
                                         <div class="col-lg-8 ml-auto">
@@ -109,11 +94,4 @@
 </div>
 <!-- #/ container -->
 
-</div>
-<!-- #/ container -->
-</div>
-<!--**********************************
-            Content body end
-        ***********************************-->
-
-@include('admin.section.footer')
+@include('customers.include.footer')

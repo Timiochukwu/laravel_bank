@@ -26,12 +26,20 @@ class Admin extends Authenticatable
         'password',
     ];
 
+    /**
+   * The primary key for the model.
+   *
+   * @var string
+   */
+  protected $primaryKey = 'admin_id';
+
+
       /**
-     * The primary key for the model.
+     * The table name for the model.
      *
      * @var string
      */
-    protected $primaryKey = 'admin_id';
+    protected $table = 'admin';
 
     
     /**

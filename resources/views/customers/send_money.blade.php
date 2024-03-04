@@ -1,56 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 
-@include('head.head' , ['title' => " Send Money "] )
-
-<body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div>
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
-    <div id="main-wrapper">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
-        @include('head.nav_header')
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
-        @include('head.header')<!--**********************************
-            Header end ti-comment-alt
-        ***********************************-->
-
-        <!--**********************************
-            Sidebar start
-        ***********************************-->
-        @include('Client_Sidebar.sidebar')<!--**********************************
-            Sidebar end
-        ***********************************-->
-
-        <!--**********************************
-        **********************************
-            Sidebar end
-        ***********************************-->
+@include('customers.include.header' , ['title' => "Customer | Send Money "] )
 
         <!--**********************************
             Content body start
