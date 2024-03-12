@@ -42,7 +42,47 @@ class AccountTypeController extends Controller
         ]);
         event(new Registered($accountType));
 
-        return redirect('admin.account_type.manage_account_type');
+        toastr()->success("Account Types added succesfully!", "Congrats");
+        return redirect()->route('admin.manage.type');
 
     }
-}
+
+    public function editAccountType($hash_id){
+        $accountType = account_type::findOrFail($hash_id);
+        return view('admin.account_type.edit', compact('accountType'));
+    }
+
+    public function editAccountTypeBackend(Request $request, $hash_id){
+        $accountType = account_type::findOrFail($hash_id);
+
+        
+
+        $validateData = $request->validate([
+            'account_name' => ['required', 'string', 'max:50', 'unique:'.account_type::class],
+            'min_bal' => ['required', 'string', 'max:50'],
+            'max_bal' => ['required', 'string', 'max:50'],
+            'exp_min_bal' => ['required', 'string', 'max:50'],
+            'exp_max_bal' => ['required', 'string', 'max:50'],
+        ]);
+
+       
+
+        $accountType->update([
+            'account_name' => $validateData['account_name'],
+            'minimum_opening_balance' => $validateData['min_bal'],
+            'maximum_opening_balance' => $validateData['max_bal'],
+            'expected_minimum_balance' => $validateData['exp_min_bal'],
+            'expected_maximum_balance' => $validateData['exp_max_bal'],
+        ]);
+        
+        toastr()->success("Account Types updated succesfully!", "Congrats");
+        return redirect()->route('admin.manage.type');
+    }
+    public function deleteAccountType(account_type $hash_id){
+        $hash_id->delete();
+        
+        toastr()->success("Account Types Deleted succesfully!", "Congrats");
+        return redirect()->route('admin.manage.type');
+    }
+
+    }

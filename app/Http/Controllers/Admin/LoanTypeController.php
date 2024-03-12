@@ -44,6 +44,7 @@ class LoanTypeController extends Controller
         $validateLoanType = $request->validate([
             'input_name' => ['required', 'max:20', 'string', 'unique:'.LoanType::class]
         ]);
+        //  die(var_dump($validateLoanType));
 
         $loanType->update([
             'input_name' => $validateLoanType['input_name'],

@@ -36,17 +36,28 @@
                                     @foreach ($accountType as $accountTypeKey => $accountTypeValue)
 
                                     <tr>
-                                        <td> {{$accountTypeValue['id']}} </td>
+                                        <td> {{$accountTypeKey + 1}} </td>
                                         <td> {{$accountTypeValue['account_name']}} </td>
                                         <td> {{$accountTypeValue['minimum_opening_balance']}} </td>
                                         <td> {{$accountTypeValue['maximum_opening_balance']}} </td>
                                         <td> {{$accountTypeValue['expected_minimum_balance']}} </td>
                                         <td> {{$accountTypeValue['expected_maximum_balance']}} </td>
                                         <td class="px-4 ру-2">
-                        <a href="{{route('admin.edit.loan.type', $accountTypeValue['id'])}}"
-                            class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-opacity-50">
-                            UPDATE
-                        </a>
+                                        <a href="{{ route('admin.edit.account.type', $accountTypeValue->hash_id) }}"
+   class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-opacity-50">
+   UPDATE
+</a>
+
+
+                        <button type="submit" onclick="confirmDelete({{$accountTypeValue['hash_id']}}, '{{$accountTypeValue['account_name']}}')"
+                            class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-opacity-50">
+                            DELETE
+                        </button>
+                        <form action="{{route('admin.delete.account.type', $accountTypeValue['hash_id'])}}"
+                            id="deleteForm{{$accountTypeValue['hash_id']}}">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                         
                     </td>
                                     </tr>

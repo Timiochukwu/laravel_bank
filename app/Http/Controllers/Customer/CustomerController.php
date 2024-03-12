@@ -138,7 +138,4 @@ class CustomerController extends Controller
         return Excel::download(new TransactionExport, 'Transacrions.xlsx');
     }
 
-    public function loanApplication(){
-        return view('customers.loan.application');
-    }
 }

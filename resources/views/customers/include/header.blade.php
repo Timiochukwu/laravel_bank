@@ -154,7 +154,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="{{route('loan.application')}}">Apply For Loan</a></li>
-                            <li><a href="">View Loan</a></li>
+                            <li><a href="{{route('view.loan.application')}}">View Loan</a></li>
                         </ul>
                     <li>
                         <a href="" aria-expanded="false">

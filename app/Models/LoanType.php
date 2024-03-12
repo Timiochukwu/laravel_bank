@@ -9,9 +9,17 @@ class LoanType extends Model
 {
     use HasFactory;
 
+///////Define tthe relationship
+public function loanApplicant()
+{
+    return $this->hasMany(LoanApplication::class, 'loan_type_id');
+}
+  
+
     protected $fillable = [
         'hash_id',
         'input_name',
+        'visibility',
     ];
      /**
    * The primary key for the model.

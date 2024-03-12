@@ -18,6 +18,14 @@ class customer extends Authenticatable
          return $this->belongsTo(account_type::class, 'account_type_name', 'hash_id');
      }
 
+     public function loanApplication()
+     {
+         return $this->belongsTo(LoanApplication::class, 'customer_hash_id', 'hash_id');
+     }
+     
+
+    
+
      /**
      * The attributes that are mass assignable.
      *

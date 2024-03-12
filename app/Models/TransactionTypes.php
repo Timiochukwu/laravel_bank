@@ -9,6 +9,9 @@ class TransactionTypes extends Model
 {
     use HasFactory;
 
+    //Define the relationship
+
+ 
     protected $guarded = []; 
 
       /**

@@ -11,9 +11,11 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AccountTypeController;
 use App\Http\Controllers\Admin\LoanTypeController;
+use App\Http\Controllers\Admin\LoanStatController;
 
 
 use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\Customer\Backend\LoanController;
 use App\Http\Controllers\Customer\Backend\TransactionTypeController;
 
 
@@ -58,10 +60,12 @@ Route::group(['prefix' => 'admin'], function() {
         Route::post('/add/account/type', [AccountTypeController::class, 'addAccountTypeBackend']);
         
         Route::get('/manage/account/type', [AccountTypeController::class, 'manageAccountType'])->name('admin.manage.type');
+        
+        Route::get('/edit/account/type/{hash_id}', [AccountTypeController::class, 'editAccountType'])->name('admin.edit.account.type');
+        Route::post('/edit/account/type/{hash_id}', [AccountTypeController::class, 'editAccountTypeBackend']);
+        Route::get('/delete/account/type/{hash_id}', [AccountTypeController::class, 'deleteAccountType'])->name('admin.delete.account.type');
        
-        Route::get('/edit/loan/type/{$id}', [AccountTypeController::class, 'editloanType'])->name('admin.edit.loan.type');
-        Route::post('/edit/loan/type/{$id}', [AccountTypeController::class, 'editLoanTypeBackend']);
-
+       
         Route::get('/add/loan/type', [LoanTypeController::class, 'addLoanType'])->name('add.loan.type');
         Route::post('/add/loan/type', [LoanTypeController::class, 'addLoanTypeBackend']);
 
@@ -69,6 +73,8 @@ Route::group(['prefix' => 'admin'], function() {
         Route::PUT('/edit/loan/{hash_id}', [LoanTypeController::class, 'editLoanTypeBackend']);
         
         Route::get('/delete/loan/{hash_id}', [LoanTypeController::class, 'deleteLoanType'])->name('delete.loan.type');
+       
+        Route::get('/view/approved/loan', [LoanStatController::class, 'approvedLoan'])->name('delete.loan.type');
     });
 
 });
@@ -92,7 +98,9 @@ Route::group(['prefix' => 'customer'], function() {
         Route::get('/change/password', [CustomerController::class, 'changePassword'])->name('customer.change.password');
         Route::post('/change/password', [CustomerController::class, 'changePasswordBackend']);
         
-        Route::get('/loan/application', [CustomerController::class, 'loanApplication'])->name('loan.application');
+        Route::get('/loan/application', [LoanController::class, 'loanApplication'])->name('loan.application');
+        Route::post('/loan/application', [LoanController::class, 'loanApplicationBackend']);
+        Route::get('/view/loan/application', [LoanController::class, 'viewLoanApplication'])->name('view.loan.application');
 
 });
 

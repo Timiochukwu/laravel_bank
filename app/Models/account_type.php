@@ -10,10 +10,10 @@ class account_type extends Model
     use HasFactory;
 
      // Define the relationship method
-     public function customers()
-     {
-         return $this->hasMany(customer::class, 'account_type_name');
-     }
+    //  public function custom()
+    //  {
+    //      return $this->hasMany(customer::class, 'hash_id');
+    //  }
 
      /**
      * The attributes that are mass assignable.
@@ -30,18 +30,14 @@ class account_type extends Model
         'expected_minimum_balance',
         'expected_maximum_balance',
      ];
-
      /**
-    * The primary key for the model.
-    *
-    * @var string
-    */
-   protected $primaryKey = 'hash_id';
- 
+   * The primary key for the model.
+   *
+   * @var string
+   */
+  protected $primaryKey = 'hash_id';
 
- 
- 
-
-
+     
+   
 
 }

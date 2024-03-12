@@ -43,14 +43,14 @@ console.log(itemType)
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete {itemType}!"
+            confirmButtonText: `Yes, delete ${itemType}!`
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('deleteForm'+ userId).submit();
 
                 Swal.fire({                    
                     title: "Deleted!",
-                    text: "This ${itemType} has been deleted.",
+                    text: `${itemType} has been deleted.`,
                     icon: "success"
                 });
             }

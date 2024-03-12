@@ -15,6 +15,8 @@ class UserController extends Controller
 {
     $customers = Customer::with('accountTypeeee')->latest()->get();
 
+    // die(var_dump($customers[1]));
+
     return view('admin.customers.viewCustomer', compact('customers'));
 }
 
