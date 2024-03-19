@@ -1,9 +1,11 @@
 <?php
 namespace App\Http\Controllers\Admin;
+use App\Models\customer;
 
 use App\Http\Controllers\Controller;
-use App\models\customer;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -15,7 +17,7 @@ class UserController extends Controller
 {
     $customers = Customer::with('accountTypeeee')->latest()->get();
 
-    // die(var_dump($customers[1]));
+    // die(dd($customers));
 
     return view('admin.customers.viewCustomer', compact('customers'));
 }
@@ -52,5 +54,12 @@ class UserController extends Controller
 
     public function addCustomer(){
         return view('admin.customers.addCustomer');
+    }
+    public function deleteCustomer(customer $hash_id){
+        $customer = customer::findOrFail($hash_id);
+        die(dd($hash_id));
+        $customer->delete();
+        toastr()->success("User deleted succesfully!","Congrats");
+        return redirect()->back();
     }
 }

@@ -80,9 +80,5 @@ class customer extends Authenticatable
      'password' => 'hashed',
  ];
 
-//  public function accountType(){
-//     return $this->belongsTo(A)
-//  }
-
 
 }

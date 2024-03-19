@@ -89,7 +89,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($approvedLoan as $loanApplyKey => $loanApplyValue)
+                    @forelse ($approvedLoan as $loanApplyKey => $loanApplyValue)
 
                     <tr>
                         <td class="py-2 px-4">{{$loanApplyKey + 1}}</td>
@@ -102,22 +102,27 @@
                         <td class="py-2 px-4">{{$loanApplyValue->installment_count." "."Months"}}</td>
                         <td class="py-2 px-4">{{$loanApplyValue->amount_payable}}</td>
                         <td class="py-2 px-4">
-                        <button type="submit" onclick="confirmApproval({{$loanApplyValue->hash_id}})" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
+                        <button type="submit" name="status" onclick="confirmApproval({{$loanApplyValue->hash_id}})" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                 APPROVE
             </button>
             
             <form method="POST" action="{{route('approve.loan', $loanApplyValue->hash_id)}}" id="approveLoan{{$loanApplyValue->hash_id}}">
                 @csrf
+                <input type="hidden" name="loanAmount" value="{{$loanApplyValue->amount}}">
+                <input type="hidden" name="customerId" value="{{$loanApplyValue->customer_hash_id}}">
             </form>
                         </td>
                         <td class="py-2 px-4">
-                        <a href="{{route('loan.summary', $loanApplyValue->hash_id)}}"
+                            <a href="{{route('loan.summary', $loanApplyValue->hash_id)}}"
                                 class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50 w-full">
                                 SUMMARY
                             </a>
                                 </td>
                     </tr>
-                    @endforeach
+                    @empty
+        <h2 class="text-2x1 font-semibold mb-4">No Loan Application </h2>
+
+                    @endforelse
 
                 </tbody>
             </table>

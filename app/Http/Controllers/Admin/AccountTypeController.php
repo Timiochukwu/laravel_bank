@@ -79,6 +79,7 @@ class AccountTypeController extends Controller
         return redirect()->route('admin.manage.type');
     }
     public function deleteAccountType(account_type $hash_id){
+        dd($hash_id);
         $hash_id->delete();
         
         toastr()->success("Account Types Deleted succesfully!", "Congrats");

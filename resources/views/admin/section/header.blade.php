@@ -160,6 +160,16 @@
 
                         </ul>
                     </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="fa fa-th-list"></i></i> <span class="nav-text">Loan Application</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{route('unapproved.loan')}}">All Application</a></li>
+                            <li><a href="{{route('approved.loan')}}"> Approved Application</a></li>
+
+                        </ul>
+                    </li>
 
 
 

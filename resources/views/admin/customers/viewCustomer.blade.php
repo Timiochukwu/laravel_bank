@@ -64,12 +64,18 @@
                                                     @else
                                                     <font color="green"> {{strtoupper($customerValues['status'])}} </font> 
                                                      @endif</td>
-                                                <td> <a href="{{route('admin.edit.customer', $customerValues['customer_id'])}}"> <input
-                                                            type="submit" class="btn-outline-fail" value="Edit"></a>
-                                                            <a color="green" href="{{route('admin.edit.customer', $customerValues['customer_id'])}}">
-                                                                <input type="submit" class="btn-outline-fail" value="Delete"></a>
-                                                </td>
-                                                <td></td>
+                                                <td> 
+                                                <a href="{{ route('admin.edit.customer', $customerValues['customer_id']) }}" class="bg-blue-500 text-white py-1 px-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-opacity-50">
+                                                EDIT
+                                            </a>
+                                            <button type="submit" onclick="confirmDelete({{$customerValues['customer_id']}}, '{{$customerValues['first_name']}}' )" class="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-red-200 focus:ring-opacity-50"> DELETE</button>
+                                            <form action="{{route('admin.delete.customer', $customerValues['customer_id'])}}"
+                                            id="deleteForm{{$customerValues['customer_id']}}">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                        </td>
+                                                
                                             </tr>
                                             @endforeach
                                             </tfoot>
@@ -86,6 +92,8 @@
         Scripts
     ***********************************-->
         @include('scripts.scripts')
+@include('admin.section.footer' )
+
 
 </body>
 

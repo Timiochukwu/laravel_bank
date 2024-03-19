@@ -23,7 +23,7 @@ class LoanApplication extends Authenticatable
 
    public function customerInfo()
    {
-       return $this->hasMany(customer::class, 'hash_id');
+       return $this->belongsTo(customer::class,'customer_hash_id', 'customer_id');
    }
 
    
@@ -48,4 +48,11 @@ class LoanApplication extends Authenticatable
         'status',
         'visibility',
      ];
+ /**
+   * The primary key for the model.
+   *
+   * @var string
+   */
+  protected $primaryKey = 'hash_id';
+
 }

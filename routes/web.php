@@ -53,6 +53,8 @@ Route::group(['prefix' => 'admin'], function() {
 
         Route::get('/edit/customer/{id}', [UserController::class, 'editCustomer'])->name('admin.edit.customer');
         Route::post('/edit/customer/{id}', [UserController::class, 'editCustomerBackend']);
+        
+        Route::get('/delete/customer/{id}', [UserController::class, 'deleteCustomer'])->name('admin.delete.customer');
 
         Route::get('/add/customer', [UserController::class, 'addCustomer'])->name('admin.add.customer');
         
@@ -74,7 +76,13 @@ Route::group(['prefix' => 'admin'], function() {
         
         Route::get('/delete/loan/{hash_id}', [LoanTypeController::class, 'deleteLoanType'])->name('delete.loan.type');
        
-        Route::get('/view/approved/loan', [LoanStatController::class, 'approvedLoan'])->name('delete.loan.type');
+        Route::get('/view/unapproved/loan', [LoanStatController::class, 'unapprovedLoan'])->name('unapproved.loan');
+        Route::get('/view/approved/loan', [LoanStatController::class, 'approvedLoan'])->name('approved.loan');
+
+        Route::post('/loan/{hash_id}/approval', [LoanStatController::class,'approveLoan'])->name('approve.loan');
+
+
+        Route::get('/loan/summary/{hash_id}', [LoanStatController::class, 'loanSummary'])->name('loan.summary');
     });
 
 });

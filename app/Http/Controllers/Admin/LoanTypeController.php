@@ -54,7 +54,7 @@ class LoanTypeController extends Controller
     }
 
     public function deleteLoanType(LoanType $hash_id ){
-        // die(var_dump($hash_id));
+        die(var_dump($hash_id));
         $hash_id->delete();
         toastr()->success("Loan Types deleted succesfully!", "Congrats");
         return redirect()->back();
